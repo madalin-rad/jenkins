@@ -2,15 +2,18 @@ pipeline {
     agent {
         node {
             label 'docker-agent-python'
-            }
-      }
-    triggers {
-        pollSCM '* * * * *'
+        }
+    }
+    // triggers {
+    //     pollSCM '* * * * *'
+    // }
+    parameters {
+                string(name: 'COMPONENT_NAME', defaultValue: 'Kafka')
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                echo 'Building..'
                 sh '''
                 cd myapp
                 python3 -m venv venv
@@ -22,7 +25,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
+                echo 'Testing..'
                 sh '''
                 cd myapp
                 . venv/bin/activate
