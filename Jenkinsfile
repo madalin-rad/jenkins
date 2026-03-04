@@ -9,6 +9,7 @@ pipeline {
     // }
     parameters {
                 string(name: 'COMPONENT_NAME', defaultValue: 'Kafka')
+                choice choices: ['main', 'integration'], description: 'Choose from what branch to run the job', name: 'JOB_BRANCH_NAME'
     }
     stages {
         stage('Build') {
