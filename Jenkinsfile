@@ -6,11 +6,12 @@ pipeline {
     }
     parameters {
                 string(name: 'COMPONENT_NAME', defaultValue: 'Kafka')
+                string(name: 'Masina', defaultValue: 'BMW')
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Building in master..'
+                echo 'Building in master...'
             }
         }
         stage('Test') {
@@ -20,7 +21,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver in master....'
+                echo 'Deliver in master...'
             }
         }
     }
