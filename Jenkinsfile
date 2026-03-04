@@ -10,17 +10,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building in master..'
+                echo 'Building in integration..'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing in master...'
+                echo 'Testing in integration...'
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver in master....'
+                echo 'Deliver in integration....'
             }
         }
     }
