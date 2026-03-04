@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building in integration..'
+                echo 'Building in integration...'
             }
         }
         stage('Test') {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver in integration....'
+                echo 'Deliver in integration...'
             }
         }
     }
