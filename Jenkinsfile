@@ -4,43 +4,23 @@ pipeline {
             label 'docker-agent-python'
         }
     }
-    // triggers {
-    //     pollSCM '* * * * *'
-    // }
     parameters {
                 string(name: 'COMPONENT_NAME', defaultValue: 'Kafka')
-                choice choices: ['main', 'integration'], description: 'Choose from what branch to run the job', name: 'JOB_BRANCH_NAME'
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                sh '''
-                cd myapp
-                python3 -m venv venv
-                . venv/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                echo 'Building in master..'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-                sh '''
-                cd myapp
-                . venv/bin/activate
-                python hello.py
-                python hello.py --name=Madalin
-                '''
+                echo 'Testing in master...'
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                echo 'Deliver in master....'
             }
         }
     }
