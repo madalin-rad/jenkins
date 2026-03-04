@@ -6,7 +6,6 @@ pipeline {
     }
     parameters {
                 string(name: 'COMPONENT_NAME', defaultValue: 'Kafka')
-                string(name: 'Masina', defaultValue: 'BMW')
     }
     stages {
         stage('Build') {
