@@ -13,4 +13,5 @@ sed -i "s/QROUTER_CLUSTER_NAME/${qrouter_cluster_name}/g" /root/dependencies.jso
 sed -i "s/QROUTER_NODE_COUNT/${qrouter_node_count}/g" /root/dependencies.json
 sed -i "s/PROCESSING_CLUSTER_NAME/${processing_cluster_name}/g" /root/dependencies.json
 /usr/bin/python /root/CheckAvailability/check_availability.py -c ${conductor_ip}
+/usr/bin/python /root/wait_for_resources.py
 cloudinit_call_home ${conductor_ip}
