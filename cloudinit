@@ -1,0 +1,16 @@
+sed -i "s/127.0.0.1/127.0.0.1 ${machine_name}.${domain_name} ${machine_name} /g" /etc/hosts
+echo "${vprobes_mgmt_int_net_ip_0}   ${machine_name}.${domain_name} ${machine_name}" >> /etc/hosts
+/usr/bin/python /root/wait_for_resources.py
+# Run the get_conductor_ip function and capture the returned value
+conductor_ip=$(get_conductor_ip)
+if [[ $? -ne 0 ]]; then
+    echo $conductor_ip
+    echo "Failed to determine conductor IP. Exiting."
+    exit 1
+fi
+chmod 0754 /root/call_home.py  /root/CheckAvailability/check_availability.py
+sed -i "s/QROUTER_CLUSTER_NAME/${qrouter_cluster_name}/g" /root/dependencies.json
+sed -i "s/QROUTER_NODE_COUNT/${qrouter_node_count}/g" /root/dependencies.json
+sed -i "s/PROCESSING_CLUSTER_NAME/${processing_cluster_name}/g" /root/dependencies.json
+/usr/bin/python /root/CheckAvailability/check_availability.py -c ${conductor_ip}
+cloudinit_call_home ${conductor_ip}
